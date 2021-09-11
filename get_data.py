@@ -6,7 +6,6 @@ This code base was creted to automatice fetch the current change
 and store in database
 """
 
-
 import pandas as pd
 from datetime import datetime
 import pandas_datareader as pdr
@@ -33,6 +32,7 @@ def get_info(start_date: datetime, end_date: datetime, selection=None):
     # print(type(eur))
     # print()
     # return data
+
 
 def main():
     start_date = datetime(2021, 9, 5)
