@@ -22,7 +22,9 @@ def get_info(start_date: datetime, end_date: datetime, selection=None):
 
         parsed = pd.DataFrame(eur)
         print(parsed["Adj Close"].iloc[0:2][0])
-        return parsed.to_numpy()
+        for x in parsed.to_numpy():
+            print(x)
+        # return parsed.to_numpy()
         # print(dir(eur))
         # print(eur[""])
     except Exception as e:
