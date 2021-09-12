@@ -32,7 +32,14 @@ def get_info(**kwargs) -> pd.DataFrame:
 
 def main():
 
+    print("Euros")
+    print(get_info(currency="EURUSD", start_date=datetime(2021, 9, 6), end_date=datetime(2021, 9, 11)))
+
+    print("\nPesos chilenos")
     print(get_info(currency="CLPUSD", start_date=datetime(2021, 9, 6), end_date=datetime(2021, 9, 11)))
+
+    print("\nSoles peruanos")
+    print(get_info(currency="PENUSD", start_date=datetime(2021, 9, 6), end_date=datetime(2021, 9, 11)))
 
 
 if __name__ == "__main__":
