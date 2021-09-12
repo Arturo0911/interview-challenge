@@ -9,7 +9,7 @@ from app.Schema import (
     challenge_schemas
 )
 
-
+# Error requests section
 @app.errorhandler(401)
 def unauthorized(error):
     return jsonify({
@@ -30,11 +30,17 @@ def not_found(error):
 
 
 
+
+
+
 @app.route("/", methods=["GET"])
 def index():
-    return jsonify({"message": "Hola bebe :v"})
+    data = PythonChallenge.query.all()
+    elements = challenge_schemas.dump(data)
+    print(elements)
+    return jsonify(elements)
 
 
-@app.route("/get_currency", methods=["GET"])
-def query_currency():
+@app.route("/get_currency/<location>/", methods=["GET"])
+def query_currency(location: str):
     pass

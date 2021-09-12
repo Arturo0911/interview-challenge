@@ -21,11 +21,24 @@ def get_info(**kwargs) -> pandas_series:
     """The arguments would be currency, time start and end date"""
     try:
 
-        eur = pdr.DataReader(kwargs["currency"]+'=X', 'yahoo', start=kwargs["start_date"], end=kwargs["end_date"])['Adj Close']
+        eur = pdr.DataReader('EURUSD=X', 'yahoo', start=kwargs["start_date"], end=kwargs["end_date"])['Adj Close']
+        chilean = pdr.DataReader('CLPUSD=X', 'yahoo', start=kwargs["start_date"], end=kwargs["end_date"])['Adj Close']
+        peruvian = pdr.DataReader('PENUSD=X', 'yahoo', start=kwargs["start_date"], end=kwargs["end_date"])['Adj Close']
+
+
+        eur_ = [x for x in eur.to_numpy()]
+        chilean_ = [x for x in chilean.to_numpy()]
+        peruvian_ = [x for x in peruvian.to_numpy()]
+
+
         parsed = pd.DataFrame(eur)
         dates = [pd.to_datetime(str(x)).strftime('%Y.%m.%d') for x in eur.index.to_numpy()]
-        currencys = [x[0] for x in parsed.to_numpy()]
 
-        return pd.DataFrame({"datetime": dates, "currencys": currencys})
+        return pd.DataFrame({"datetime": dates, "euro_currency": eur_, "chilean_currency": chilean_, "peruvian_currency":peruvian_ })
     except Exception:
         return None
+
+
+
+# def main():
+#     print(get_info(start_date=datetime(2021, 9, 6), end_date=datetime(2021, 9, 11)))
